@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -48,12 +49,12 @@ func NewClient(apiKey string) (*Client, error) {
 	}, nil
 }
 
-func (c *Client) request(method, endpoint string, params map[string]string, body io.Reader) ([]byte, error) {
+func (c *Client) request(ctx context.Context, method, endpoint string, params map[string]string, body io.Reader) ([]byte, error) {
 	fullUrl, err := url.JoinPath(c.baseURL, endpoint)
 	if err != nil {
 		return nil, err
 	}
-	req, err := http.NewRequest(method, fullUrl, body)
+	req, err := http.NewRequestWithContext(ctx, method, fullUrl, body)
 	if err != nil {
 		return nil, err
 	}
@@ -78,10 +79,10 @@ func (c *Client) request(method, endpoint string, params map[string]string, body
 	return buf.Bytes(), nil
 }
 
-func (c *Client) get(endpoint string, params map[string]string, body io.Reader) ([]byte, error) {
-	return c.request("GET", endpoint, params, body)
+func (c *Client) get(ctx context.Context, endpoint string, params map[string]string, body io.Reader) ([]byte, error) {
+	return c.request(ctx, "GET", endpoint, params, body)
 }
 
-func (c *Client) post(endpoint string, params map[string]string, body io.Reader) ([]byte, error) {
-	return c.request("POST", endpoint, params, body)
+func (c *Client) post(ctx context.Context, endpoint string, params map[string]string, body io.Reader) ([]byte, error) {
+	return c.request(ctx, "POST", endpoint, params, body)
 }
