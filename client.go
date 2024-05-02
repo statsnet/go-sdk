@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -10,24 +11,6 @@ import (
 	"net/url"
 	"os"
 )
-
-type ClientException struct {
-	Endpoint        string
-	StatusCode      int
-	ResponseContent []byte
-}
-
-func NewClientException(endpoint string, statusCode int, responseContent []byte) *ClientException {
-	return &ClientException{
-		Endpoint:        endpoint,
-		StatusCode:      statusCode,
-		ResponseContent: responseContent,
-	}
-}
-
-func (c *ClientException) Error() string {
-	return fmt.Sprintf("Request to %s unsuccessful. Status code: %d. Response content: %s", c.Endpoint, c.StatusCode, c.ResponseContent)
-}
 
 type Client struct {
 	client  *http.Client
@@ -73,7 +56,7 @@ func (c *Client) request(ctx context.Context, method, endpoint string, params ma
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(resp.Body)
 	if resp.StatusCode > 299 {
-		return nil, NewClientException(endpoint, resp.StatusCode, buf.Bytes())
+		return nil, NewClientError(endpoint, resp.StatusCode, buf.Bytes())
 	}
 
 	return buf.Bytes(), nil
@@ -85,4 +68,90 @@ func (c *Client) get(ctx context.Context, endpoint string, params map[string]str
 
 func (c *Client) post(ctx context.Context, endpoint string, params map[string]string, body io.Reader) ([]byte, error) {
 	return c.request(ctx, "POST", endpoint, params, body)
+}
+
+func (c *Client) Me(ctx context.Context) ([]byte, error) {
+	return c.get(ctx, "/user/me", nil, nil)
+}
+
+func (c *Client) Search(ctx context.Context, query string, jurisdiction *string, limitRef *int) ([]byte, error) {
+	var limit int
+	if limitRef == nil {
+		limit = 5
+	} else {
+		limit = *limitRef
+	}
+	if err := validateLimit(limit); err != nil {
+		return nil, err
+	}
+
+	if err := validateJurisdiction(true, jurisdiction); err != nil {
+		return nil, err
+	}
+
+	params := map[string]string{"limit": fmt.Sprintf("%d", limit)}
+
+	type body struct {
+		Filters struct {
+			Jurisdiction []string `json:"jurisdiction"`
+		} `json:"filters"`
+		Query string `json:"query"`
+	}
+	var filters struct {
+		Jurisdiction []string `json:"jurisdiction"`
+	}
+	if jurisdiction != nil {
+		filters = struct {
+			Jurisdiction []string `json:"jurisdiction"`
+		}{
+			Jurisdiction: []string{*jurisdiction},
+		}
+	}
+
+	b, _ := json.Marshal(body{
+		Filters: filters,
+		Query:   query,
+	})
+	r := bytes.NewReader(b)
+	return c.post(ctx, "/business/search", params, r)
+}
+
+func (c *Client) GetCompany(ctx context.Context, jurisdiction string, id int) ([]byte, error) {
+	validateJurisdiction(false, &jurisdiction)
+	return c.get(ctx, fmt.Sprintf("/business/%s/%d/paid", jurisdiction, id), nil, nil)
+}
+func (c *Client) GetCompanyMeta(ctx context.Context, id int) ([]byte, error) {
+	return c.get(ctx, fmt.Sprintf("/business/%d/data/view/meta", id), nil, nil)
+}
+func (c *Client) GetCompanyCourtCases(ctx context.Context, id, limitRef *int) ([]byte, error) {
+	limit := normalizeLimit(limitRef)
+	validateLimit(limit)
+	params := map[string]string{
+		"limit": fmt.Sprintf("%d", limit),
+	}
+	return c.get(ctx, fmt.Sprintf("/business/%d/data/view/meta", id), params, nil)
+}
+func (c *Client) GetCompanyDepartments(ctx context.Context, id, limitRef *int) ([]byte, error) {
+	limit := normalizeLimit(limitRef)
+	validateLimit(limit)
+	params := map[string]string{
+		"limit": fmt.Sprintf("%d", limit),
+	}
+	return c.get(ctx, fmt.Sprintf("/business/%d/department", id), params, nil)
+}
+func (c *Client) GetCompanyGovContracts(ctx context.Context, id, limitRef *int) ([]byte, error) {
+	limit := normalizeLimit(limitRef)
+	validateLimit(limit)
+	params := map[string]string{
+		"limit": fmt.Sprintf("%d", limit),
+	}
+	return c.get(ctx, fmt.Sprintf("/business/%d/gov_contracts", id), params, nil)
+}
+func (c *Client) GetCompanyEvents(ctx context.Context, id, limitRef *int) ([]byte, error) {
+	limit := normalizeLimit(limitRef)
+	validateLimit(limit)
+	params := map[string]string{
+		"limit": fmt.Sprintf("%d", limit),
+	}
+	return c.get(ctx, fmt.Sprintf("/business/%d/events", id), params, nil)
 }
