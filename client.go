@@ -74,13 +74,13 @@ func (c *Client) post(ctx context.Context, endpoint string, params map[string]st
 	return c.request(ctx, "POST", endpoint, params, body, isJsonBody)
 }
 
-func (c *Client) Me(ctx context.Context) (*MeResponse, error) {
+func (c *Client) Me(ctx context.Context) (*UserResponse, error) {
 	r, err := c.get(ctx, "/user/me", nil)
 	if err != nil {
 		return nil, err
 	}
 
-	var model MeResponse
+	var model UserResponse
 	err = json.Unmarshal(r, &model)
 	if err != nil {
 		return nil, err
@@ -88,7 +88,7 @@ func (c *Client) Me(ctx context.Context) (*MeResponse, error) {
 	return &model, nil
 }
 
-func (c *Client) Search(ctx context.Context, query string, jurisdiction *string, limitRef *int) (*SearchCompanyResponse, error) {
+func (c *Client) Search(ctx context.Context, query string, jurisdiction *string, limitRef *int) (*Search, error) {
 	var limit int
 	if limitRef == nil {
 		limit = 5
@@ -131,7 +131,7 @@ func (c *Client) Search(ctx context.Context, query string, jurisdiction *string,
 	if err != nil {
 		return nil, err
 	}
-	var model SearchCompanyResponse
+	var model Search
 	err = json.Unmarshal(response, &model)
 	if err != nil {
 		return nil, err
@@ -139,7 +139,7 @@ func (c *Client) Search(ctx context.Context, query string, jurisdiction *string,
 	return &model, nil
 }
 
-func (c *Client) GetCompany(ctx context.Context, jurisdiction string, id int) (*GetCompanyResponse, error) {
+func (c *Client) GetCompany(ctx context.Context, jurisdiction string, id int) (*CompanyResult, error) {
 	if err := validateJurisdiction(false, &jurisdiction); err != nil {
 		return nil, err
 	}
@@ -147,26 +147,26 @@ func (c *Client) GetCompany(ctx context.Context, jurisdiction string, id int) (*
 	if err != nil {
 		return nil, err
 	}
-	var model GetCompanyResponse
+	var model CompanyResult
 	err = json.Unmarshal(response, &model)
 	if err != nil {
 		return nil, err
 	}
 	return &model, nil
 }
-func (c *Client) GetCompanyMeta(ctx context.Context, id int) (*GetCompanyMetaResponse, error) {
+func (c *Client) GetCompanyMeta(ctx context.Context, id int) (*DataViewResult, error) {
 	response, err := c.get(ctx, fmt.Sprintf("/business/%d/data/view/meta", id), nil)
 	if err != nil {
 		return nil, err
 	}
-	var model GetCompanyMetaResponse
+	var model DataViewResult
 	err = json.Unmarshal(response, &model)
 	if err != nil {
 		return nil, err
 	}
 	return &model, err
 }
-func (c *Client) GetCompanyCourtCases(ctx context.Context, id int, limitRef *int) (*GetCompanyCourtCasesResponse, error) {
+func (c *Client) GetCompanyCourtCases(ctx context.Context, id int, limitRef *int) (*CourtCaseResult, error) {
 	limit := normalizeLimit(limitRef)
 	if err := validateLimit(limit); err != nil {
 		return nil, err
@@ -178,14 +178,14 @@ func (c *Client) GetCompanyCourtCases(ctx context.Context, id int, limitRef *int
 	if err != nil {
 		return nil, err
 	}
-	var model GetCompanyCourtCasesResponse
+	var model CourtCaseResult
 	err = json.Unmarshal(response, &model)
 	if err != nil {
 		return nil, err
 	}
 	return &model, err
 }
-func (c *Client) GetCompanyDepartments(ctx context.Context, id int, limitRef *int) (*GetCompanyDepartmentsResponse, error) {
+func (c *Client) GetCompanyDepartments(ctx context.Context, id int, limitRef *int) ([]byte, error) {
 	limit := normalizeLimit(limitRef)
 	if err := validateLimit(limit); err != nil {
 		return nil, err
@@ -197,14 +197,9 @@ func (c *Client) GetCompanyDepartments(ctx context.Context, id int, limitRef *in
 	if err != nil {
 		return nil, err
 	}
-	var model GetCompanyDepartmentsResponse
-	err = json.Unmarshal(response, &model)
-	if err != nil {
-		return nil, err
-	}
-	return &model, nil
+	return response, nil
 }
-func (c *Client) GetCompanyGovContracts(ctx context.Context, id int, limitRef *int) (*GetCompanyGovContractsResponse, error) {
+func (c *Client) GetCompanyGovContracts(ctx context.Context, id int, limitRef *int) (*GovContractsWithMeta, error) {
 	limit := normalizeLimit(limitRef)
 	if err := validateLimit(limit); err != nil {
 		return nil, err
@@ -216,14 +211,14 @@ func (c *Client) GetCompanyGovContracts(ctx context.Context, id int, limitRef *i
 	if err != nil {
 		return nil, err
 	}
-	var model GetCompanyGovContractsResponse
+	var model GovContractsWithMeta
 	err = json.Unmarshal(response, &model)
 	if err != nil {
 		return nil, err
 	}
 	return &model, nil
 }
-func (c *Client) GetCompanyEvents(ctx context.Context, id int, limitRef *int) (*GetCompanyEventsResponse, error) {
+func (c *Client) GetCompanyEvents(ctx context.Context, id int, limitRef *int) (*EventsWithMeta, error) {
 	limit := normalizeLimit(limitRef)
 	if err := validateLimit(limit); err != nil {
 		return nil, err
@@ -235,14 +230,14 @@ func (c *Client) GetCompanyEvents(ctx context.Context, id int, limitRef *int) (*
 	if err != nil {
 		return nil, err
 	}
-	var model GetCompanyEventsResponse
+	var model EventsWithMeta
 	err = json.Unmarshal(response, &model)
 	if err != nil {
 		return nil, err
 	}
 	return &model, err
 }
-func (c *Client) GetCompanyRelations(ctx context.Context, id int, limitRef *int) (*GetCompanyRelationsResponse, error) {
+func (c *Client) GetCompanyRelations(ctx context.Context, id int, limitRef *int) (*RelationResult, error) {
 	limit := normalizeLimit(limitRef)
 	if err := validateLimit(limit); err != nil {
 		return nil, err
@@ -254,7 +249,7 @@ func (c *Client) GetCompanyRelations(ctx context.Context, id int, limitRef *int)
 	if err != nil {
 		return nil, err
 	}
-	var model GetCompanyRelationsResponse
+	var model RelationResult
 	err = json.Unmarshal(response, &model)
 	if err != nil {
 		return nil, err
@@ -262,12 +257,12 @@ func (c *Client) GetCompanyRelations(ctx context.Context, id int, limitRef *int)
 	return &model, err
 }
 
-func (c *Client) GetCompanyByIdentifier(ctx context.Context, identifier string) (*GetCompanyByIdentifierResponse, error) {
+func (c *Client) GetCompanyByIdentifier(ctx context.Context, identifier string) (*CompanyResult, error) {
 	response, err := c.get(ctx, fmt.Sprintf("/business/%s/paid", identifier), nil)
 	if err != nil {
 		return nil, err
 	}
-	var model GetCompanyByIdentifierResponse
+	var model CompanyResult
 	err = json.Unmarshal(response, &model)
 	if err != nil {
 		return nil, err
