@@ -38,12 +38,12 @@ func (c *Client) request(ctx context.Context, method, endpoint string, params ma
 		return nil, err
 	}
 	req, err := http.NewRequestWithContext(ctx, method, fullUrl, body)
+	if err != nil {
+		return nil, err
+	}
 	req.Header.Set("X-API-KEY", c.apiKey)
 	if isJsonBody {
 		req.Header.Set("Content-Type", "application/json")
-	}
-	if err != nil {
-		return nil, err
 	}
 
 	q := req.URL.Query()
