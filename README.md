@@ -79,7 +79,7 @@ companyRelations, err := client.GetCompanyRelations(context.Background(), 1, &li
 
 ```go
 // Get company by identifier
-company, err = client.GetCompanyByIdentifier(context.Background(), "1")
+company, err := client.GetCompanyByIdentifier(context.Background(), "1")
 ```
 
 ##### Limit must be between 1 and 500, 501 is already invalid value
