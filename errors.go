@@ -20,7 +20,7 @@ func NewClientError(endpoint string, statusCode int, responseContent []byte) *Cl
 	}
 }
 
-// message: str, key: str, value: Any
+// InvalidParamsError message: str, key: str, value: Any
 type InvalidParamsError struct {
 	Message string
 	key     string
