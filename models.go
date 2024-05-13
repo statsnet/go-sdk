@@ -1148,7 +1148,7 @@ type UserResponse struct {
 	CreatedAt            *time.Time `json:"created_at,omitempty"`
 	DeletedAt            *time.Time `json:"deleted_at,omitempty"`
 	Email                *string    `json:"email,omitempty"`
-	EmailDeliveryAbility *string    `json:"email_delivery_ability,omitempty"`
+	EmailDeliveryAbility *bool      `json:"email_delivery_ability,omitempty"`
 	EmailVerified        *bool      `json:"email_verified,omitempty"`
 	EndDate              *time.Time `json:"end_date,omitempty"`
 	Id                   *int       `json:"id,omitempty"`
