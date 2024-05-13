@@ -1145,8 +1145,8 @@ type TokensResponse struct {
 type UserResponse struct {
 	ApiToken             *string             `json:"api_token,omitempty"`
 	CompanyName          *string             `json:"company_name,omitempty"`
-	CreatedAt            *openapi_types.Date `json:"created_at,omitempty"`
-	DeletedAt            *openapi_types.Date `json:"deleted_at,omitempty"`
+	CreatedAt            *time.Time          `json:"created_at,omitempty"`
+	DeletedAt            *time.Time          `json:"deleted_at,omitempty"`
 	Email                *string             `json:"email,omitempty"`
 	EmailDeliveryAbility *string             `json:"email_delivery_ability,omitempty"`
 	EmailVerified        *string             `json:"email_verified,omitempty"`
@@ -1164,7 +1164,7 @@ type UserResponse struct {
 	Role                 *string             `json:"role,omitempty"`
 	StartDate            *openapi_types.Date `json:"start_date,omitempty"`
 	Status               *string             `json:"status,omitempty"`
-	UpdatedAt            *openapi_types.Date `json:"updated_at,omitempty"`
+	UpdatedAt            *time.Time          `json:"updated_at,omitempty"`
 }
 
 // UsersLinkedCompanies defines model for UsersLinkedCompanies.
