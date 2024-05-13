@@ -20,7 +20,7 @@ func main() {
 ```
 
 ```go
-client, err := NewClient(token)
+client, err := gosdk.NewClient(token)
 ```
 
 ```go
