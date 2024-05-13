@@ -1157,7 +1157,7 @@ type UserResponse struct {
 	Name                 *string    `json:"name,omitempty"`
 	NextBillDate         *time.Time `json:"next_bill_date,omitempty"`
 	Phone                *string    `json:"phone,omitempty"`
-	PhoneVerified        *string    `json:"phone_verified,omitempty"`
+	PhoneVerified        *bool      `json:"phone_verified,omitempty"`
 	PlanId               *int       `json:"plan_id,omitempty"`
 	Position             *string    `json:"position,omitempty"`
 	Reports              *int       `json:"reports,omitempty"`
