@@ -1143,28 +1143,28 @@ type TokensResponse struct {
 
 // UserResponse defines model for UserResponse.
 type UserResponse struct {
-	ApiToken             *string             `json:"api_token,omitempty"`
-	CompanyName          *string             `json:"company_name,omitempty"`
-	CreatedAt            *time.Time          `json:"created_at,omitempty"`
-	DeletedAt            *time.Time          `json:"deleted_at,omitempty"`
-	Email                *string             `json:"email,omitempty"`
-	EmailDeliveryAbility *string             `json:"email_delivery_ability,omitempty"`
-	EmailVerified        *string             `json:"email_verified,omitempty"`
-	EndDate              *openapi_types.Date `json:"end_date,omitempty"`
-	Id                   *int                `json:"id,omitempty"`
-	Language             *string             `json:"language,omitempty"`
-	LastSignInDate       *string             `json:"last_sign_in_date,omitempty"`
-	Name                 *string             `json:"name,omitempty"`
-	NextBillDate         *openapi_types.Date `json:"next_bill_date,omitempty"`
-	Phone                *string             `json:"phone,omitempty"`
-	PhoneVerified        *string             `json:"phone_verified,omitempty"`
-	PlanId               *int                `json:"plan_id,omitempty"`
-	Position             *string             `json:"position,omitempty"`
-	Reports              *int                `json:"reports,omitempty"`
-	Role                 *string             `json:"role,omitempty"`
-	StartDate            *openapi_types.Date `json:"start_date,omitempty"`
-	Status               *string             `json:"status,omitempty"`
-	UpdatedAt            *time.Time          `json:"updated_at,omitempty"`
+	ApiToken             *string    `json:"api_token,omitempty"`
+	CompanyName          *string    `json:"company_name,omitempty"`
+	CreatedAt            *time.Time `json:"created_at,omitempty"`
+	DeletedAt            *time.Time `json:"deleted_at,omitempty"`
+	Email                *string    `json:"email,omitempty"`
+	EmailDeliveryAbility *string    `json:"email_delivery_ability,omitempty"`
+	EmailVerified        *string    `json:"email_verified,omitempty"`
+	EndDate              *time.Time `json:"end_date,omitempty"`
+	Id                   *int       `json:"id,omitempty"`
+	Language             *string    `json:"language,omitempty"`
+	LastSignInDate       *string    `json:"last_sign_in_date,omitempty"`
+	Name                 *string    `json:"name,omitempty"`
+	NextBillDate         *time.Time `json:"next_bill_date,omitempty"`
+	Phone                *string    `json:"phone,omitempty"`
+	PhoneVerified        *string    `json:"phone_verified,omitempty"`
+	PlanId               *int       `json:"plan_id,omitempty"`
+	Position             *string    `json:"position,omitempty"`
+	Reports              *int       `json:"reports,omitempty"`
+	Role                 *string    `json:"role,omitempty"`
+	StartDate            *time.Time `json:"start_date,omitempty"`
+	Status               *string    `json:"status,omitempty"`
+	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
 }
 
 // UsersLinkedCompanies defines model for UsersLinkedCompanies.
