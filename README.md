@@ -2,7 +2,7 @@
 ## Installation
 
 ```sh
-go get github.com/statsnet/go-sdk
+go get github.com/statsnet/gosdk
 ```
 
 ## Usage
@@ -11,7 +11,7 @@ Import statsnet client and set API keys:
 ```go
 package main
 import (
-    "github.com/statsnet/go-sdk"
+    "github.com/statsnet/gosdk"
 )
 
 func main() {

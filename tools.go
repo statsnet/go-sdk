@@ -1,4 +1,4 @@
-package main
+package gosdk
 
 func normalizeLimit(limitRef *int) int {
 	var limit int

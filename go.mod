@@ -1,4 +1,4 @@
-module github.com/statsnet/go-sdk
+module github.com/statsnet/gosdk
 
 go 1.21.0
 

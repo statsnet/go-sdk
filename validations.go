@@ -1,4 +1,4 @@
-package main
+package gosdk
 
 func validateLimit(value int) error {
 	if value > 500 || value < 1 {
