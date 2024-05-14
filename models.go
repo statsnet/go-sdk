@@ -80,27 +80,27 @@ type Company struct {
 		PaidUpCapital *float32 `json:"paid_up_capital,omitempty"`
 		ShareCapital  *float32 `json:"share_capital,omitempty"`
 	} `json:"capital,omitempty"`
-	CompanySize     *string             `json:"company_size,omitempty"`
-	Contacts        *Contacts           `json:"contacts,omitempty"`
-	CreatedAt       *openapi_types.Date `json:"created_at,omitempty"`
-	DissolutionDate *openapi_types.Date `json:"dissolution_date,omitempty"`
-	Export          *[]string           `json:"export,omitempty"`
-	Financials      *Financials         `json:"financials,omitempty"`
-	Headcount       *Headcount          `json:"headcount,omitempty"`
-	Id              *int                `json:"id,omitempty"`
-	Identifier      *string             `json:"identifier,omitempty"`
+	CompanySize     *string     `json:"company_size,omitempty"`
+	Contacts        *Contacts   `json:"contacts,omitempty"`
+	CreatedAt       *time.Time  `json:"created_at,omitempty"`
+	DissolutionDate *time.Time  `json:"dissolution_date,omitempty"`
+	Export          *[]string   `json:"export,omitempty"`
+	Financials      *Financials `json:"financials,omitempty"`
+	Headcount       *Headcount  `json:"headcount,omitempty"`
+	Id              *int        `json:"id,omitempty"`
+	Identifier      *string     `json:"identifier,omitempty"`
 	Identifiers     *[]struct {
 		Type  string  `json:"type"`
 		Value *string `json:"value,omitempty"`
 	} `json:"identifiers,omitempty"`
-	Import            *[]string           `json:"import,omitempty"`
-	Inactive          *bool               `json:"inactive,omitempty"`
-	IncorporationDate *openapi_types.Date `json:"incorporation_date,omitempty"`
-	Industry          *string             `json:"industry,omitempty"`
-	IndustryCodes     *IndustryCodes      `json:"industry_codes,omitempty"`
-	Jurisdiction      *string             `json:"jurisdiction,omitempty"`
-	LastUpdateDate    *openapi_types.Date `json:"last_update_date,omitempty"`
-	LegalForm         *string             `json:"legal_form,omitempty"`
+	Import            *[]string      `json:"import,omitempty"`
+	Inactive          *bool          `json:"inactive,omitempty"`
+	IncorporationDate *time.Time     `json:"incorporation_date,omitempty"`
+	Industry          *string        `json:"industry,omitempty"`
+	IndustryCodes     *IndustryCodes `json:"industry_codes,omitempty"`
+	Jurisdiction      *string        `json:"jurisdiction,omitempty"`
+	LastUpdateDate    *time.Time     `json:"last_update_date,omitempty"`
+	LegalForm         *string        `json:"legal_form,omitempty"`
 	MainIndustryCode  *struct {
 		Code        string  `json:"code"`
 		Description *string `json:"description,omitempty"`
@@ -114,15 +114,15 @@ type Company struct {
 	Names               *[]struct {
 		Name string `json:"name"`
 	} `json:"names,omitempty"`
-	Officers      *Officers           `json:"officers,omitempty"`
-	OwnershipType *string             `json:"ownership_type,omitempty"`
-	Risks         *Risks              `json:"risks,omitempty"`
-	Shareholders  *Shareholders       `json:"shareholders,omitempty"`
-	Status        *string             `json:"status,omitempty"`
-	Structure     *string             `json:"structure,omitempty"`
-	Title         *string             `json:"title,omitempty"`
-	UpdatedAt     *openapi_types.Date `json:"updated_at,omitempty"`
-	VarPayer      *bool               `json:"var_payer,omitempty"`
+	Officers      *Officers     `json:"officers,omitempty"`
+	OwnershipType *string       `json:"ownership_type,omitempty"`
+	Risks         *Risks        `json:"risks,omitempty"`
+	Shareholders  *Shareholders `json:"shareholders,omitempty"`
+	Status        *string       `json:"status,omitempty"`
+	Structure     *string       `json:"structure,omitempty"`
+	Title         *string       `json:"title,omitempty"`
+	UpdatedAt     *time.Time    `json:"updated_at,omitempty"`
+	VarPayer      *bool         `json:"var_payer,omitempty"`
 }
 
 // CompanyBetaResult defines model for CompanyBetaResult.
@@ -282,16 +282,16 @@ type DataViewResult struct {
 // EmployeesWithMeta defines model for EmployeesWithMeta.
 type EmployeesWithMeta struct {
 	Employees *[]struct {
-		CreatedAt            *openapi_types.Date `json:"created_at,omitempty"`
-		EmployerIdentifier   *string             `json:"employer_identifier,omitempty"`
-		EmployerJurisdiction *string             `json:"employer_jurisdiction,omitempty"`
-		EmployerName         *string             `json:"employer_name,omitempty"`
-		EndDate              *openapi_types.Date `json:"end_date,omitempty"`
-		Identifier           *string             `json:"identifier,omitempty"`
-		Name                 *string             `json:"name,omitempty"`
-		Position             *string             `json:"position,omitempty"`
-		StartDate            *openapi_types.Date `json:"start_date,omitempty"`
-		UpdatedAt            *openapi_types.Date `json:"updated_at,omitempty"`
+		CreatedAt            *time.Time `json:"created_at,omitempty"`
+		EmployerIdentifier   *string    `json:"employer_identifier,omitempty"`
+		EmployerJurisdiction *string    `json:"employer_jurisdiction,omitempty"`
+		EmployerName         *string    `json:"employer_name,omitempty"`
+		EndDate              *time.Time `json:"end_date,omitempty"`
+		Identifier           *string    `json:"identifier,omitempty"`
+		Name                 *string    `json:"name,omitempty"`
+		Position             *string    `json:"position,omitempty"`
+		StartDate            *time.Time `json:"start_date,omitempty"`
+		UpdatedAt            *time.Time `json:"updated_at,omitempty"`
 	} `json:"employees,omitempty"`
 	PaginationCount  *int `json:"pagination_count,omitempty"`
 	PaginationOffset *int `json:"pagination_offset,omitempty"`
@@ -311,26 +311,26 @@ type Error struct {
 // EventsWithMeta defines model for EventsWithMeta.
 type EventsWithMeta struct {
 	Events *[]struct {
-		After        *string             `json:"after,omitempty"`
-		Attr         *string             `json:"attr,omitempty"`
-		Before       *string             `json:"before,omitempty"`
-		Date         *openapi_types.Date `json:"date,omitempty"`
-		Jurisdiction *string             `json:"jurisdiction,omitempty"`
+		After        *string    `json:"after,omitempty"`
+		Attr         *string    `json:"attr,omitempty"`
+		Before       *string    `json:"before,omitempty"`
+		Date         *time.Time `json:"date,omitempty"`
+		Jurisdiction *string    `json:"jurisdiction,omitempty"`
 	} `json:"events,omitempty"`
 }
 
 // ExportResult defines model for ExportResult.
 type ExportResult struct {
 	Export *[]struct {
-		BalanceReserved *bool               `json:"balance_reserved,omitempty"`
-		Chargeable      *bool               `json:"chargeable,omitempty"`
-		CreatedAt       *openapi_types.Date `json:"created_at,omitempty"`
-		Description     *string             `json:"description,omitempty"`
-		Error           *string             `json:"error,omitempty"`
-		Fields          *[]string           `json:"fields,omitempty"`
-		FileName        *string             `json:"file_name,omitempty"`
-		FilePath        *string             `json:"file_path,omitempty"`
-		FileType        *string             `json:"file_type,omitempty"`
+		BalanceReserved *bool      `json:"balance_reserved,omitempty"`
+		Chargeable      *bool      `json:"chargeable,omitempty"`
+		CreatedAt       *time.Time `json:"created_at,omitempty"`
+		Description     *string    `json:"description,omitempty"`
+		Error           *string    `json:"error,omitempty"`
+		Fields          *[]string  `json:"fields,omitempty"`
+		FileName        *string    `json:"file_name,omitempty"`
+		FilePath        *string    `json:"file_path,omitempty"`
+		FileType        *string    `json:"file_type,omitempty"`
 		Filters         *struct {
 			FileType *string `json:"file_type,omitempty"`
 			Filters  *struct {
@@ -346,14 +346,14 @@ type ExportResult struct {
 			} `json:"filters,omitempty"`
 			Type *string `json:"type,omitempty"`
 		} `json:"filters,omitempty"`
-		HashId    *string             `json:"hash_id,omitempty"`
-		Id        *int                `json:"id,omitempty"`
-		Language  *string             `json:"language,omitempty"`
-		Status    *string             `json:"status,omitempty"`
-		Type      *string             `json:"type,omitempty"`
-		UpdatedAt *openapi_types.Date `json:"updated_at,omitempty"`
-		Url       *string             `json:"url,omitempty"`
-		UserId    *int                `json:"user_id,omitempty"`
+		HashId    *string    `json:"hash_id,omitempty"`
+		Id        *int       `json:"id,omitempty"`
+		Language  *string    `json:"language,omitempty"`
+		Status    *string    `json:"status,omitempty"`
+		Type      *string    `json:"type,omitempty"`
+		UpdatedAt *time.Time `json:"updated_at,omitempty"`
+		Url       *string    `json:"url,omitempty"`
+		UserId    *int       `json:"user_id,omitempty"`
 	} `json:"export,omitempty"`
 	PaginationCount  *int `json:"pagination_count,omitempty"`
 	PaginationOffset *int `json:"pagination_offset,omitempty"`
@@ -363,12 +363,12 @@ type ExportResult struct {
 // FavouriteListResponse defines model for FavouriteListResponse.
 type FavouriteListResponse struct {
 	List *[]struct {
-		CreatedAt *openapi_types.Date `json:"created_at,omitempty"`
-		DeletedAt *openapi_types.Date `json:"deleted_at,omitempty"`
-		Id        *int                `json:"id,omitempty"`
-		Name      *string             `json:"name,omitempty"`
-		OrgId     *int                `json:"org_id,omitempty"`
-		UserId    *int                `json:"user_id,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		DeletedAt *time.Time `json:"deleted_at,omitempty"`
+		Id        *int       `json:"id,omitempty"`
+		Name      *string    `json:"name,omitempty"`
+		OrgId     *int       `json:"org_id,omitempty"`
+		UserId    *int       `json:"user_id,omitempty"`
 	} `json:"list,omitempty"`
 	PaginationOffset *int `json:"pagination_offset,omitempty"`
 	PaginationTotal  *int `json:"pagination_total,omitempty"`
@@ -377,13 +377,13 @@ type FavouriteListResponse struct {
 // FavouriteObjectResponse defines model for FavouriteObjectResponse.
 type FavouriteObjectResponse struct {
 	Items *[]struct {
-		Addresses   *Addresses          `json:"addresses,omitempty"`
-		CompanyId   *int                `json:"company_id,omitempty"`
-		CompanyName *string             `json:"company_name,omitempty"`
-		CreatedAt   *openapi_types.Date `json:"created_at,omitempty"`
-		DeletedAt   *openapi_types.Date `json:"deleted_at,omitempty"`
-		Headcount   *Headcount          `json:"headcount,omitempty"`
-		Id          *int                `json:"id,omitempty"`
+		Addresses   *Addresses `json:"addresses,omitempty"`
+		CompanyId   *int       `json:"company_id,omitempty"`
+		CompanyName *string    `json:"company_name,omitempty"`
+		CreatedAt   *time.Time `json:"created_at,omitempty"`
+		DeletedAt   *time.Time `json:"deleted_at,omitempty"`
+		Headcount   *Headcount `json:"headcount,omitempty"`
+		Id          *int       `json:"id,omitempty"`
 		Identifiers *[]struct {
 			Type  string  `json:"type"`
 			Value *string `json:"value,omitempty"`
@@ -475,8 +475,8 @@ type GovContractsWithMeta struct {
 
 // Headcount defines model for Headcount.
 type Headcount = []struct {
-	Count *string             `json:"count,omitempty"`
-	Date  *openapi_types.Date `json:"date,omitempty"`
+	Count *string    `json:"count,omitempty"`
+	Date  *time.Time `json:"date,omitempty"`
 }
 
 // IndividualPersonWithData defines model for IndividualPersonWithData.
@@ -556,15 +556,15 @@ type ListOfData struct {
 	} `json:"certs,omitempty"`
 	CertsCount *int `json:"certs_count,omitempty"`
 	ConfCerts  *[]struct {
-		CertIssuer         *string             `json:"cert_issuer,omitempty"`
-		DeclarantName      *string             `json:"declarant_name,omitempty"`
-		EndDate            *openapi_types.Date `json:"end_date,omitempty"`
-		ProducerName       *string             `json:"producer_name,omitempty"`
-		ProductName        *string             `json:"product_name,omitempty"`
-		RegistrationNumber *string             `json:"registration_number,omitempty"`
-		Source             *string             `json:"source,omitempty"`
-		SourceUrl          *string             `json:"source_url,omitempty"`
-		StartDate          *openapi_types.Date `json:"start_date,omitempty"`
+		CertIssuer         *string    `json:"cert_issuer,omitempty"`
+		DeclarantName      *string    `json:"declarant_name,omitempty"`
+		EndDate            *time.Time `json:"end_date,omitempty"`
+		ProducerName       *string    `json:"producer_name,omitempty"`
+		ProductName        *string    `json:"product_name,omitempty"`
+		RegistrationNumber *string    `json:"registration_number,omitempty"`
+		Source             *string    `json:"source,omitempty"`
+		SourceUrl          *string    `json:"source_url,omitempty"`
+		StartDate          *time.Time `json:"start_date,omitempty"`
 	} `json:"conf_certs,omitempty"`
 	ConfCertsCount *int `json:"conf_certs_count,omitempty"`
 	Counterparties *[]struct {
@@ -611,13 +611,13 @@ type ListOfData struct {
 	} `json:"domains,omitempty"`
 	DomainsCount *int `json:"domains_count,omitempty"`
 	Excises      *[]struct {
-		Address    *string             `json:"address,omitempty"`
-		EndDate    *openapi_types.Date `json:"end_date,omitempty"`
-		ExciseCode *string             `json:"excise_code,omitempty"`
-		Object     *string             `json:"object,omitempty"`
-		Product    *string             `json:"product,omitempty"`
-		StartDate  *openapi_types.Date `json:"start_date,omitempty"`
-		Status     *string             `json:"status,omitempty"`
+		Address    *string    `json:"address,omitempty"`
+		EndDate    *time.Time `json:"end_date,omitempty"`
+		ExciseCode *string    `json:"excise_code,omitempty"`
+		Object     *string    `json:"object,omitempty"`
+		Product    *string    `json:"product,omitempty"`
+		StartDate  *time.Time `json:"start_date,omitempty"`
+		Status     *string    `json:"status,omitempty"`
 	} `json:"excises,omitempty"`
 	ExcisesCount *int `json:"excises_count,omitempty"`
 	Farmers      *[]struct {
@@ -839,31 +839,31 @@ type Officers = []struct {
 		Id    int    `json:"id"`
 		Value string `json:"value"`
 	} `json:"contacts,omitempty"`
-	EndDate    *openapi_types.Date `json:"end_date,omitempty"`
-	HashBin    string              `json:"hash_bin"`
-	Identifier *string             `json:"identifier,omitempty"`
-	Inactive   bool                `json:"inactive"`
-	Name       string              `json:"name"`
-	NameEn     string              `json:"name_en"`
-	NameNative *string             `json:"name_native,omitempty"`
+	EndDate    *time.Time `json:"end_date,omitempty"`
+	HashBin    string     `json:"hash_bin"`
+	Identifier *string    `json:"identifier,omitempty"`
+	Inactive   bool       `json:"inactive"`
+	Name       string     `json:"name"`
+	NameEn     string     `json:"name_en"`
+	NameNative *string    `json:"name_native,omitempty"`
 	Risks      *[]struct {
 		Object  string                    `json:"object"`
 		Records *[]map[string]interface{} `json:"records,omitempty"`
 		Source  string                    `json:"source"`
 		Status  string                    `json:"status"`
 	} `json:"risks,omitempty"`
-	Role      *string             `json:"role,omitempty"`
-	StartDate *openapi_types.Date `json:"start_date,omitempty"`
+	Role      *string    `json:"role,omitempty"`
+	StartDate *time.Time `json:"start_date,omitempty"`
 }
 
 // OrganizationInvitesResponse defines model for OrganizationInvitesResponse.
 type OrganizationInvitesResponse struct {
 	List *[]struct {
-		CreatedAt *openapi_types.Date `json:"created_at,omitempty"`
-		DeletedAt *openapi_types.Date `json:"deleted_at,omitempty"`
-		OrgId     *int                `json:"org_id,omitempty"`
-		Status    *string             `json:"status,omitempty"`
-		UserId    *int                `json:"user_id,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		DeletedAt *time.Time `json:"deleted_at,omitempty"`
+		OrgId     *int       `json:"org_id,omitempty"`
+		Status    *string    `json:"status,omitempty"`
+		UserId    *int       `json:"user_id,omitempty"`
 	} `json:"list,omitempty"`
 	PaginationOffset *int `json:"pagination_offset,omitempty"`
 	PaginationTotal  *int `json:"pagination_total,omitempty"`
@@ -983,19 +983,19 @@ type ReportsHistory struct {
 		NameEn        *string        `json:"name_en,omitempty"`
 		NameNative    *string        `json:"name_native,omitempty"`
 		Officers      *[]struct {
-			EndDate    *openapi_types.Date `json:"end_date,omitempty"`
-			Inactive   *bool               `json:"inactive,omitempty"`
-			Name       *string             `json:"name,omitempty"`
-			NameEn     *string             `json:"name_en,omitempty"`
-			NameNative *string             `json:"name_native,omitempty"`
-			Role       *string             `json:"role,omitempty"`
-			StartDate  *openapi_types.Date `json:"start_date,omitempty"`
+			EndDate    *time.Time `json:"end_date,omitempty"`
+			Inactive   *bool      `json:"inactive,omitempty"`
+			Name       *string    `json:"name,omitempty"`
+			NameEn     *string    `json:"name_en,omitempty"`
+			NameNative *string    `json:"name_native,omitempty"`
+			Role       *string    `json:"role,omitempty"`
+			StartDate  *time.Time `json:"start_date,omitempty"`
 		} `json:"officers,omitempty"`
-		OwnershipType *string             `json:"ownership_type,omitempty"`
-		Status        *string             `json:"status,omitempty"`
-		Structure     *string             `json:"structure,omitempty"`
-		Title         *string             `json:"title,omitempty"`
-		ViewDate      *openapi_types.Date `json:"view_date,omitempty"`
+		OwnershipType *string    `json:"ownership_type,omitempty"`
+		Status        *string    `json:"status,omitempty"`
+		Structure     *string    `json:"structure,omitempty"`
+		Title         *string    `json:"title,omitempty"`
+		ViewDate      *time.Time `json:"view_date,omitempty"`
 	} `json:"business,omitempty"`
 	PaginationCount  *int `json:"pagination_count,omitempty"`
 	PaginationOffset *int `json:"pagination_offset,omitempty"`
@@ -1069,14 +1069,14 @@ type Shareholders = []struct {
 		Id    int    `json:"id"`
 		Value string `json:"value"`
 	} `json:"contacts,omitempty"`
-	EndDate    *openapi_types.Date `json:"end_date,omitempty"`
-	HashBin    string              `json:"hash_bin"`
-	Identifier *string             `json:"identifier,omitempty"`
-	Inactive   *bool               `json:"inactive,omitempty"`
-	IsPerson   bool                `json:"is_person"`
-	Name       string              `json:"name"`
-	NameEn     string              `json:"name_en"`
-	NameNative string              `json:"name_native"`
+	EndDate    *time.Time `json:"end_date,omitempty"`
+	HashBin    string     `json:"hash_bin"`
+	Identifier *string    `json:"identifier,omitempty"`
+	Inactive   *bool      `json:"inactive,omitempty"`
+	IsPerson   bool       `json:"is_person"`
+	Name       string     `json:"name"`
+	NameEn     string     `json:"name_en"`
+	NameNative string     `json:"name_native"`
 	Risks      *[]struct {
 		Object  *string `json:"object,omitempty"`
 		Records *[]struct {
@@ -1090,11 +1090,11 @@ type Shareholders = []struct {
 		Source *string `json:"source,omitempty"`
 		Status *string `json:"status,omitempty"`
 	} `json:"risks,omitempty"`
-	Role                 *string             `json:"role,omitempty"`
-	Share                *int                `json:"share,omitempty"`
-	ShareCapital         *int                `json:"share_capital,omitempty"`
-	ShareholderCompanyId int                 `json:"shareholder_company_id"`
-	StartDate            *openapi_types.Date `json:"start_date,omitempty"`
+	Role                 *string    `json:"role,omitempty"`
+	Share                *int       `json:"share,omitempty"`
+	ShareCapital         *int       `json:"share_capital,omitempty"`
+	ShareholderCompanyId int        `json:"shareholder_company_id"`
+	StartDate            *time.Time `json:"start_date,omitempty"`
 }
 
 // SocialNetworks defines model for SocialNetworks.
@@ -1136,14 +1136,17 @@ type TaxDeclarationsResult struct {
 
 // TokensResponse defines model for TokensResponse.
 type TokensResponse struct {
-	AccessToken  *string             `json:"access_token,omitempty"`
-	ExpireAt     *openapi_types.Date `json:"expire_at,omitempty"`
-	RefreshToken *string             `json:"refresh_token,omitempty"`
+	AccessToken  *string    `json:"access_token,omitempty"`
+	ExpireAt     *time.Time `json:"expire_at,omitempty"`
+	RefreshToken *string    `json:"refresh_token,omitempty"`
 }
 
 // UserResponse defines model for UserResponse.
 type UserResponse struct {
 	ApiToken             *string    `json:"api_token,omitempty"`
+	CardFirstSix         *string    `json:"card_first_six,omitempty"`
+	CardLastFour         *string    `json:"card_last_four,omitempty"`
+	CardType             *string    `json:"card_type,omitempty"`
 	CompanyName          *string    `json:"company_name,omitempty"`
 	CreatedAt            *time.Time `json:"created_at,omitempty"`
 	DeletedAt            *time.Time `json:"deleted_at,omitempty"`
@@ -1151,19 +1154,21 @@ type UserResponse struct {
 	EmailDeliveryAbility *bool      `json:"email_delivery_ability,omitempty"`
 	EmailVerified        *bool      `json:"email_verified,omitempty"`
 	EndDate              *time.Time `json:"end_date,omitempty"`
-	Id                   *int       `json:"id,omitempty"`
+	Id                   *int64     `json:"id,omitempty"`
 	Language             *string    `json:"language,omitempty"`
-	LastSignInDate       *string    `json:"last_sign_in_date,omitempty"`
 	Name                 *string    `json:"name,omitempty"`
 	NextBillDate         *time.Time `json:"next_bill_date,omitempty"`
 	Phone                *string    `json:"phone,omitempty"`
 	PhoneVerified        *bool      `json:"phone_verified,omitempty"`
-	PlanId               *int       `json:"plan_id,omitempty"`
+	PlanId               *int64     `json:"plan_id,omitempty"`
+	PlanReports          *int64     `json:"plan_reports,omitempty"`
+	PlanText             *string    `json:"plan_text,omitempty"`
 	Position             *string    `json:"position,omitempty"`
-	Reports              *int       `json:"reports,omitempty"`
+	ReferralId           *int64     `json:"referral_id,omitempty"`
+	Reports              *int64     `json:"reports,omitempty"`
 	Role                 *string    `json:"role,omitempty"`
+	Sessions             *[]string  `json:"sessions,omitempty"`
 	StartDate            *time.Time `json:"start_date,omitempty"`
-	Status               *string    `json:"status,omitempty"`
 	UpdatedAt            *time.Time `json:"updated_at,omitempty"`
 }
 
@@ -1485,58 +1490,62 @@ type GetBusinessPdfJurisdictionIdParams struct {
 
 // PostBusinessSearchJSONBody defines parameters for PostBusinessSearch.
 type PostBusinessSearchJSONBody struct {
-	Filters *struct {
-		AddressesState *[]string `json:"addresses.state,omitempty"`
-		CompanySize    *[]string `json:"company_size,omitempty"`
-		Financials     *struct {
-			Max *int `json:"max,omitempty"`
-			Min *int `json:"min,omitempty"`
-		} `json:"financials,omitempty"`
-		Inactive         *[]bool   `json:"inactive,omitempty"`
-		Jurisdiction     *[]string `json:"jurisdiction,omitempty"`
-		MainIndustryCode *[]string `json:"main_industry_code,omitempty"`
-		Structure        *[]string `json:"structure,omitempty"`
-	} `json:"filters,omitempty"`
-
-	// Query name to search
-	Query string `json:"query"`
+	AddressesState *[]string `json:"addresses.state,omitempty"`
+	CompanySize    *[]string `json:"company_size,omitempty"`
+	ContactType    *string   `json:"contact_type,omitempty"`
+	FinTaxes       *struct {
+		Max *uint64 `json:"max,omitempty"`
+		Min *uint64 `json:"min,omitempty"`
+	} `json:"fin_taxes,omitempty"`
+	Headcount        *[]string `json:"headcount,omitempty"`
+	Inactive         *[]bool   `json:"inactive,omitempty"`
+	Jurisdiction     *[]string `json:"jurisdiction,omitempty"`
+	LegalForm        *[]string `json:"legal_form,omitempty"`
+	MainIndustryCode *[]string `json:"main_industry_code,omitempty"`
+	Revenue          *struct {
+		Max *uint64 `json:"max,omitempty"`
+		Min *uint64 `json:"min,omitempty"`
+	} `json:"revenue,omitempty"`
+	Structure *[]string `json:"structure,omitempty"`
 }
 
 // PostBusinessSearchParams defines parameters for PostBusinessSearch.
 type PostBusinessSearchParams struct {
-	Authorization string `json:"Authorization"`
-	XSum          string `json:"x-sum"`
-	XRequestId    string `json:"x-request-id"`
-	UserAgent     string `json:"user-agent"`
+	Query         *string `form:"query,omitempty" json:"query,omitempty"`
+	Authorization string  `json:"Authorization"`
+	XSum          string  `json:"x-sum"`
+	XRequestId    string  `json:"x-request-id"`
+	UserAgent     string  `json:"user-agent"`
 }
 
 // PostBusinessSearchHighlightsJSONBody defines parameters for PostBusinessSearchHighlights.
 type PostBusinessSearchHighlightsJSONBody struct {
-	Filters *struct {
-		AddressesState   *[]string `json:"addresses.state,omitempty"`
-		CompanySize      *[]string `json:"company_size,omitempty"`
-		Inactive         *[]bool   `json:"inactive,omitempty"`
-		Jurisdiction     *[]string `json:"jurisdiction,omitempty"`
-		LegalForm        *[]string `json:"legal_form,omitempty"`
-		MainIndustryCode *[]string `json:"main_industry_code,omitempty"`
-		Structure        *[]string `json:"structure,omitempty"`
-	} `json:"filters,omitempty"`
-
-	// Query name to search
-	Query string `json:"query"`
+	AddressesState *[]string `json:"addresses.state,omitempty"`
+	CompanySize    *[]string `json:"company_size,omitempty"`
+	ContactType    *string   `json:"contact_type,omitempty"`
+	FinTaxes       *struct {
+		Max *uint64 `json:"max,omitempty"`
+		Min *uint64 `json:"min,omitempty"`
+	} `json:"fin_taxes,omitempty"`
+	Headcount        *[]string `json:"headcount,omitempty"`
+	Inactive         *[]bool   `json:"inactive,omitempty"`
+	Jurisdiction     *[]string `json:"jurisdiction,omitempty"`
+	LegalForm        *[]string `json:"legal_form,omitempty"`
+	MainIndustryCode *[]string `json:"main_industry_code,omitempty"`
+	Revenue          *struct {
+		Max *uint64 `json:"max,omitempty"`
+		Min *uint64 `json:"min,omitempty"`
+	} `json:"revenue,omitempty"`
+	Structure *[]string `json:"structure,omitempty"`
 }
 
 // PostBusinessSearchHighlightsParams defines parameters for PostBusinessSearchHighlights.
 type PostBusinessSearchHighlightsParams struct {
-	Authorization string `json:"Authorization"`
-	XSum          string `json:"x-sum"`
-	XRequestId    string `json:"x-request-id"`
-	UserAgent     string `json:"user-agent"`
-}
-
-// GetBusinessIdentifierBinParams defines parameters for GetBusinessIdentifierBin.
-type GetBusinessIdentifierBinParams struct {
-	Authorization string `json:"Authorization"`
+	Query         *string `form:"query,omitempty" json:"query,omitempty"`
+	Authorization string  `json:"Authorization"`
+	XSum          string  `json:"x-sum"`
+	XRequestId    string  `json:"x-request-id"`
+	UserAgent     string  `json:"user-agent"`
 }
 
 // GetBusinessIdBrowserPreviewParams defines parameters for GetBusinessIdBrowserPreview.
@@ -1573,6 +1582,14 @@ type GetBusinessIdDataParams struct {
 
 // GetBusinessIdDataViewMetaParams defines parameters for GetBusinessIdDataViewMeta.
 type GetBusinessIdDataViewMetaParams struct {
+	Authorization string `json:"Authorization"`
+	XSum          string `json:"x-sum"`
+	XRequestId    string `json:"x-request-id"`
+	UserAgent     string `json:"user-agent"`
+}
+
+// GetBusinessIdDepartmentParams defines parameters for GetBusinessIdDepartment.
+type GetBusinessIdDepartmentParams struct {
 	Authorization string `json:"Authorization"`
 	XSum          string `json:"x-sum"`
 	XRequestId    string `json:"x-request-id"`
@@ -1667,6 +1684,11 @@ type GetBusinessJurisdictionIndustryCodesParams struct {
 	UserAgent     string `json:"user-agent"`
 }
 
+// GetBusinessJurisdictionIdentifierBinParams defines parameters for GetBusinessJurisdictionIdentifierBin.
+type GetBusinessJurisdictionIdentifierBinParams struct {
+	Authorization string `json:"Authorization"`
+}
+
 // GetBusinessJurisdictionIdPaidParams defines parameters for GetBusinessJurisdictionIdPaid.
 type GetBusinessJurisdictionIdPaidParams struct {
 	XSum          string `json:"x-sum"`
@@ -1724,7 +1746,7 @@ type GetExportDownloadHashIdParams struct {
 
 // PostExportExcelIdentifiersMultipartBody defines parameters for PostExportExcelIdentifiers.
 type PostExportExcelIdentifiersMultipartBody struct {
-	Upload *string `json:"upload,omitempty"`
+	Upload *openapi_types.File `json:"upload,omitempty"`
 }
 
 // PostExportExcelIdentifiersParams defines parameters for PostExportExcelIdentifiers.
