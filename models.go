@@ -279,6 +279,13 @@ type DataViewResult struct {
 	Websites               *DataView `json:"websites,omitempty"`
 }
 
+// DepartmentsResult defines model for DepartmentsResult.
+type DepartmentsResult struct {
+	Departments  *[]string `json:"departments,omitempty"`
+	Identifier   *string   `json:"identifier,omitempty"`
+	Jurisdiction *string   `json:"jurisdiction,omitempty"`
+}
+
 // EmployeesWithMeta defines model for EmployeesWithMeta.
 type EmployeesWithMeta struct {
 	Employees *[]struct {

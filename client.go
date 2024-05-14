@@ -185,7 +185,7 @@ func (c *Client) GetCompanyCourtCases(ctx context.Context, id int, limitRef *int
 	}
 	return &model, err
 }
-func (c *Client) GetCompanyDepartments(ctx context.Context, id int, limitRef *int) ([]byte, error) {
+func (c *Client) GetCompanyDepartments(ctx context.Context, id int, limitRef *int) (*DepartmentsResult, error) {
 	limit := normalizeLimit(limitRef)
 	if err := validateLimit(limit); err != nil {
 		return nil, err
@@ -197,7 +197,12 @@ func (c *Client) GetCompanyDepartments(ctx context.Context, id int, limitRef *in
 	if err != nil {
 		return nil, err
 	}
-	return response, nil
+	var model DepartmentsResult
+	err = json.Unmarshal(response, &model)
+	if err != nil {
+		return nil, err
+	}
+	return &model, nil
 }
 func (c *Client) GetCompanyGovContracts(ctx context.Context, id int, limitRef *int) (*GovContractsWithMeta, error) {
 	limit := normalizeLimit(limitRef)
