@@ -262,8 +262,8 @@ func (c *Client) GetCompanyRelations(ctx context.Context, id int, limitRef *int)
 	return &model, err
 }
 
-func (c *Client) GetCompanyByIdentifier(ctx context.Context, identifier string) (*CompanyResult, error) {
-	response, err := c.get(ctx, fmt.Sprintf("/business/%s/paid", identifier), nil)
+func (c *Client) GetCompanyByIdentifier(ctx context.Context, jurisdiction, identifier string) (*CompanyResult, error) {
+	response, err := c.get(ctx, fmt.Sprintf("/business/%s/%s/bin", jurisdiction, identifier), nil)
 	if err != nil {
 		return nil, err
 	}
