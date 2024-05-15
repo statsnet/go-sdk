@@ -955,8 +955,13 @@ type RelationResult struct {
 		SourceKey                *int    `json:"source_key,omitempty"`
 		Type                     *string `json:"type,omitempty"`
 	} `json:"links,omitempty"`
-	Meta *[]struct {
-		Name *int `json:"name,omitempty"`
+	Meta *struct {
+		Affiliations *int64 `json:"affiliations,omitempty"`
+		Branches     *int64 `json:"branches,omitempty"`
+		Contacts     *int64 `json:"contacts,omitempty"`
+		Officers     *int64 `json:"officers,omitempty"`
+		Shareholders *int64 `json:"shareholders,omitempty"`
+		Subsidiaries *int64 `json:"subsidiaries,omitempty"`
 	} `json:"meta,omitempty"`
 	Node *[]struct {
 		Id       *int    `json:"id,omitempty"`
