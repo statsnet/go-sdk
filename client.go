@@ -174,7 +174,7 @@ func (c *Client) GetCompanyCourtCases(ctx context.Context, id int, limitRef *int
 	params := map[string]string{
 		"limit": fmt.Sprintf("%d", limit),
 	}
-	response, err := c.get(ctx, fmt.Sprintf("/business/%d/data/view/meta", id), params)
+	response, err := c.get(ctx, fmt.Sprintf("/business/%d/court_cases", id), params)
 	if err != nil {
 		return nil, err
 	}
