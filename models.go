@@ -137,12 +137,12 @@ type CompanyBetaResult struct {
 
 // CompanyResult defines model for CompanyResult.
 type CompanyResult struct {
-	Alternatives  *Alternatives   `json:"alternatives,omitempty"`
-	Company       *Company        `json:"company,omitempty"`
-	Contacts      *ResultContacts `json:"contacts,omitempty"`
-	IsFull        bool            `json:"is_full"`
-	RisksMetaData *RisksMetaData  `json:"risks_meta_data,omitempty"`
-	Seo           *Seo            `json:"seo,omitempty"`
+	Alternatives  *Alternatives  `json:"alternatives,omitempty"`
+	Company       Company        `json:"company"`
+	Contacts      ResultContacts `json:"contacts"`
+	IsFull        bool           `json:"is_full"`
+	RisksMetaData *RisksMetaData `json:"risks_meta_data,omitempty"`
+	Seo           *Seo           `json:"seo,omitempty"`
 }
 
 // CompanyWithState defines model for CompanyWithState.
@@ -211,8 +211,8 @@ type ContractsMeta struct {
 
 // CourtCaseResult defines model for CourtCaseResult.
 type CourtCaseResult struct {
-	CaseTypeMeta *CourtCasesMeta `json:"case_type_meta,omitempty"`
-	CourtCases   *[]struct {
+	CaseTypeMeta CourtCasesMeta `json:"case_type_meta"`
+	CourtCases   []struct {
 		CaseNumber string    `json:"case_number"`
 		CaseType   *string   `json:"case_type,omitempty"`
 		Category   *string   `json:"category,omitempty"`
@@ -231,10 +231,10 @@ type CourtCaseResult struct {
 		Result       *string   `json:"result,omitempty"`
 		Sides        *[]string `json:"sides,omitempty"`
 		StartDate    *string   `json:"start_date,omitempty"`
-	} `json:"court_cases,omitempty"`
-	Meta     *CourtCasesMeta `json:"meta,omitempty"`
-	Total    *int            `json:"total,omitempty"`
-	YearMeta *CourtCasesMeta `json:"year_meta,omitempty"`
+	} `json:"court_cases"`
+	Meta     CourtCasesMeta `json:"meta"`
+	Total    int            `json:"total"`
+	YearMeta CourtCasesMeta `json:"year_meta"`
 }
 
 // CourtCasesMeta defines model for CourtCasesMeta.
@@ -245,8 +245,8 @@ type CourtCasesMeta = []struct {
 
 // DataView defines model for DataView.
 type DataView struct {
-	Key   *string `json:"key,omitempty"`
-	Value *string `json:"value,omitempty"`
+	Key   string `json:"key"`
+	Value string `json:"value"`
 }
 
 // DataViewResult defines model for DataViewResult.
@@ -281,9 +281,9 @@ type DataViewResult struct {
 
 // DepartmentsResult defines model for DepartmentsResult.
 type DepartmentsResult struct {
-	Departments  *[]string `json:"departments,omitempty"`
-	Identifier   *string   `json:"identifier,omitempty"`
-	Jurisdiction *string   `json:"jurisdiction,omitempty"`
+	Departments  []string `json:"departments"`
+	Identifier   string   `json:"identifier"`
+	Jurisdiction string   `json:"jurisdiction"`
 }
 
 // EmployeesWithMeta defines model for EmployeesWithMeta.
@@ -317,13 +317,13 @@ type Error struct {
 
 // EventsWithMeta defines model for EventsWithMeta.
 type EventsWithMeta struct {
-	Events *[]struct {
+	Events []struct {
 		After        *string    `json:"after,omitempty"`
 		Attr         *string    `json:"attr,omitempty"`
 		Before       *string    `json:"before,omitempty"`
 		Date         *time.Time `json:"date,omitempty"`
 		Jurisdiction *string    `json:"jurisdiction,omitempty"`
-	} `json:"events,omitempty"`
+	} `json:"events"`
 }
 
 // ExportResult defines model for ExportResult.
@@ -453,8 +453,8 @@ type FizRelations struct {
 
 // GovContractsWithMeta defines model for GovContractsWithMeta.
 type GovContractsWithMeta struct {
-	Count              *int `json:"count,omitempty"`
-	GovernmentContract *[]struct {
+	Count              int `json:"count"`
+	GovernmentContract []struct {
 		ContractSumWnds    *float32 `json:"contract_sum_wnds,omitempty"`
 		CustomerBankNameKz *string  `json:"customer_bank_name_kz,omitempty"`
 		CustomerBankNameRu *string  `json:"customer_bank_name_ru,omitempty"`
@@ -475,9 +475,9 @@ type GovContractsWithMeta struct {
 		SupplierIik        *string  `json:"supplier_iik,omitempty"`
 		SupplierName       *string  `json:"supplier_name,omitempty"`
 		SupplierStatsnetId *string  `json:"supplier_statsnet_id,omitempty"`
-	} `json:"government_contract,omitempty"`
-	PaginationCount  *int `json:"pagination_count,omitempty"`
-	PaginationOffset *int `json:"pagination_offset,omitempty"`
+	} `json:"government_contract"`
+	PaginationCount  int `json:"pagination_count"`
+	PaginationOffset int `json:"pagination_offset"`
 }
 
 // Headcount defines model for Headcount.
@@ -943,7 +943,7 @@ type QuasiContractsWithMeta struct {
 
 // RelationResult defines model for RelationResult.
 type RelationResult struct {
-	Links *[]struct {
+	Links []struct {
 		ConnectionHashIdentifier *string `json:"connection_hash_identifier,omitempty"`
 		ConnectionId             *int    `json:"connection_id,omitempty"`
 		ConnectionKey            *int    `json:"connection_key,omitempty"`
@@ -954,23 +954,23 @@ type RelationResult struct {
 		Name                     *string `json:"name,omitempty"`
 		SourceKey                *int    `json:"source_key,omitempty"`
 		Type                     *string `json:"type,omitempty"`
-	} `json:"links,omitempty"`
-	Meta *struct {
+	} `json:"links"`
+	Meta struct {
 		Affiliations *int64 `json:"affiliations,omitempty"`
 		Branches     *int64 `json:"branches,omitempty"`
 		Contacts     *int64 `json:"contacts,omitempty"`
 		Officers     *int64 `json:"officers,omitempty"`
 		Shareholders *int64 `json:"shareholders,omitempty"`
 		Subsidiaries *int64 `json:"subsidiaries,omitempty"`
-	} `json:"meta,omitempty"`
-	Node *[]struct {
+	} `json:"meta"`
+	Node []struct {
 		Id       *int    `json:"id,omitempty"`
 		IsPerson *bool   `json:"is_person,omitempty"`
 		Key      *string `json:"key,omitempty"`
 		Name     *string `json:"name,omitempty"`
 		Type     *string `json:"type,omitempty"`
-	} `json:"node,omitempty"`
-	Total *int `json:"total,omitempty"`
+	} `json:"node"`
+	Total int `json:"total"`
 }
 
 // RelationsMeta defines model for RelationsMeta.
@@ -1045,7 +1045,7 @@ type RisksMetaData struct {
 
 // Search defines model for Search.
 type Search struct {
-	Company *[]struct {
+	Company []struct {
 		Addresses *[]struct {
 			Raw   *string `json:"raw,omitempty"`
 			State *string `json:"state,omitempty"`
@@ -1061,11 +1061,11 @@ type Search struct {
 		NameEn       *string `json:"name_en,omitempty"`
 		Structure    *string `json:"structure,omitempty"`
 		Title        *string `json:"title,omitempty"`
-	} `json:"company,omitempty"`
-	Count            *int  `json:"count,omitempty"`
-	IsPhone          *bool `json:"is_phone,omitempty"`
-	PaginationCount  *int  `json:"pagination_count,omitempty"`
-	PaginationOffset *int  `json:"pagination_offset,omitempty"`
+	} `json:"company"`
+	Count            int  `json:"count"`
+	IsPhone          bool `json:"is_phone"`
+	PaginationCount  int  `json:"pagination_count"`
+	PaginationOffset int  `json:"pagination_offset"`
 }
 
 // Seo defines model for Seo.
@@ -1162,11 +1162,11 @@ type UserResponse struct {
 	CompanyName          *string    `json:"company_name,omitempty"`
 	CreatedAt            *time.Time `json:"created_at,omitempty"`
 	DeletedAt            *time.Time `json:"deleted_at,omitempty"`
-	Email                *string    `json:"email,omitempty"`
+	Email                string     `json:"email"`
 	EmailDeliveryAbility *bool      `json:"email_delivery_ability,omitempty"`
 	EmailVerified        *bool      `json:"email_verified,omitempty"`
 	EndDate              *time.Time `json:"end_date,omitempty"`
-	Id                   *int64     `json:"id,omitempty"`
+	Id                   int64      `json:"id"`
 	Language             *string    `json:"language,omitempty"`
 	Name                 *string    `json:"name,omitempty"`
 	NextBillDate         *time.Time `json:"next_bill_date,omitempty"`
